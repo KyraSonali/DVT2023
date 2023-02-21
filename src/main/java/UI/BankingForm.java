@@ -5,22 +5,25 @@
  */
 package UI;
 
+import Backend.BankingValidator;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Kyra Balliram
  */
-public class BankingDetails extends javax.swing.JFrame {
+public class BankingForm extends javax.swing.JFrame {
 
     /**
      * Creates new form BankingDetails
      */
-    public BankingDetails() {
+    private BankingValidator v;
+    private String idNum;
+
+    public BankingForm() {
         initComponents();
+        v = new BankingValidator();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,11 +57,11 @@ public class BankingDetails extends javax.swing.JFrame {
         error8lbl = new javax.swing.JLabel();
         error3lbl = new javax.swing.JLabel();
         error4lbl = new javax.swing.JLabel();
-        error5lbl = new javax.swing.JLabel();
-        IdNumlbl = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        error2lbl = new javax.swing.JLabel();
         error6lbl = new javax.swing.JLabel();
+        IdNumlbl = new javax.swing.JLabel();
+        IdNumTxtField = new javax.swing.JTextField();
+        error2lbl = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
         femaleButton = new javax.swing.JRadioButton();
         cardMonthCombo = new javax.swing.JComboBox<>();
         dayCardNbrCombo = new javax.swing.JComboBox<>();
@@ -84,7 +87,7 @@ public class BankingDetails extends javax.swing.JFrame {
         PayPalLbl.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         PayPalLbl.setForeground(new java.awt.Color(0, 153, 204));
         PayPalLbl.setText("PAYPAL");
-        jPanel3.add(PayPalLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 12, 104, 26));
+        jPanel3.add(PayPalLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 104, 26));
 
         CardNbrLbl.setText("Card Number (no spaces)");
         jPanel3.add(CardNbrLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, -1));
@@ -127,17 +130,23 @@ public class BankingDetails extends javax.swing.JFrame {
             }
         });
         jPanel3.add(addCardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 140, 20));
-        jPanel3.add(error1lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 190, 30));
+        jPanel3.add(error1lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 190, 30));
         jPanel3.add(error8lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 120, 30));
         jPanel3.add(error3lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 110, 30));
         jPanel3.add(error4lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 140, 30));
-        jPanel3.add(error5lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 160, 30));
+        jPanel3.add(error6lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 160, 30));
 
         IdNumlbl.setText("ID Number");
         jPanel3.add(IdNumlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 64, -1));
-        jPanel3.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 270, 34));
+
+        IdNumTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdNumTxtFieldActionPerformed(evt);
+            }
+        });
+        jPanel3.add(IdNumTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 270, 34));
         jPanel3.add(error2lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 120, 30));
-        jPanel3.add(error6lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 120, 30));
+        jPanel3.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 120, 30));
 
         femaleButton.setText("female");
         jPanel3.add(femaleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
@@ -189,20 +198,17 @@ public class BankingDetails extends javax.swing.JFrame {
     private void addCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCardButtonActionPerformed
         // TODO add your handling code here:
 
-        //checking card number: checking for length, if there is other digits and if it isd a mastercard?
-        String currentCardNbr = cardNbrTxtField.getText();
-        int currentCardNbrLength = currentCardNbr.length();
-        System.out.println(currentCardNbrLength);
-        if (currentCardNbrLength == 16) {
-            System.out.println("successfully added");
-        } else if (currentCardNbrLength == 19) {
-             error1lbl.setText("do not add sapces");
-        } else if ( currentCardNbrLength>16){
-            error1lbl.setText("card number length invalid");
-        }
+ 
 
 
     }//GEN-LAST:event_addCardButtonActionPerformed
+
+    private void IdNumTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdNumTxtFieldActionPerformed
+        // TODO add your handling code here:
+        idNum = IdNumTxtField.getText();
+
+
+    }//GEN-LAST:event_IdNumTxtFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,20 +227,21 @@ public class BankingDetails extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BankingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BankingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BankingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BankingDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BankingDetails().setVisible(true);
+                new BankingForm().setVisible(true);
             }
         });
     }
@@ -242,6 +249,7 @@ public class BankingDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CardNbrLbl;
     private javax.swing.JTextField CvvTxtField;
+    private javax.swing.JTextField IdNumTxtField;
     private javax.swing.JLabel IdNumlbl;
     private javax.swing.JDialog JPaneBox;
     private javax.swing.JTextField LastNameTxtField;
@@ -257,7 +265,6 @@ public class BankingDetails extends javax.swing.JFrame {
     private javax.swing.JLabel error2lbl;
     private javax.swing.JLabel error3lbl;
     private javax.swing.JLabel error4lbl;
-    private javax.swing.JLabel error5lbl;
     private javax.swing.JLabel error6lbl;
     private javax.swing.JLabel error8lbl;
     private javax.swing.JRadioButton femaleButton;
@@ -267,7 +274,7 @@ public class BankingDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField12;
+    private javax.swing.JLabel label;
     private javax.swing.JLabel lastNamelbl;
     private javax.swing.JRadioButton maleButton;
     private javax.swing.JLabel monthlbl;
