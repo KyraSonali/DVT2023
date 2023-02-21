@@ -11,7 +11,7 @@ package Backend;
  */
 public class Validation {
     
-     //CHECKS IF THE NUMBER CONTAINS ANY CHARACTERS
+     //checks if numbers contains letters
     public boolean checkDigit(String id) {
         boolean checkID = true; //Does not contain letters
         char c = 'a';
@@ -25,6 +25,18 @@ public class Validation {
         }
         return checkID;
     }
+    
+     //check Id 
+    public boolean checkLength(String id) {
+        boolean check = true;
+        if (id.length() != 13) {
+            check = false;
+        }
+        return check;
+    }
+
+    
+    
 
     
 }
