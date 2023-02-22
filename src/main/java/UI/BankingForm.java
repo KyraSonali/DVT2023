@@ -6,6 +6,7 @@
 package UI;
 
 import Backend.BankingValidator;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,18 @@ public class BankingForm extends javax.swing.JFrame {
     public BankingForm() {
         initComponents();
         v = new BankingValidator();
+        
+        
+        //make a data model
+         DefaultListModel b = new DefaultListModel();
+        //populate model
+        //set model
+        
+        for(int i=1967;i<2050;i++){
+            
+        
+        }
+        
     }
 
     /**
@@ -36,6 +49,7 @@ public class BankingForm extends javax.swing.JFrame {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
         JPaneBox = new javax.swing.JDialog();
+        genderButtons = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -64,8 +78,6 @@ public class BankingForm extends javax.swing.JFrame {
         label = new javax.swing.JLabel();
         femaleButton = new javax.swing.JRadioButton();
         cardMonthCombo = new javax.swing.JComboBox<>();
-        dayCardNbrCombo = new javax.swing.JComboBox<>();
-        currentYearlbl = new javax.swing.JLabel();
 
         javax.swing.GroupLayout JPaneBoxLayout = new javax.swing.GroupLayout(JPaneBox.getContentPane());
         JPaneBox.getContentPane().setLayout(JPaneBoxLayout);
@@ -120,6 +132,7 @@ public class BankingForm extends javax.swing.JFrame {
         cardYearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cardYearComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 50, 20));
 
+        genderButtons.add(maleButton);
         maleButton.setText("male");
         jPanel3.add(maleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
@@ -148,17 +161,12 @@ public class BankingForm extends javax.swing.JFrame {
         jPanel3.add(error2lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 120, 30));
         jPanel3.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 120, 30));
 
+        genderButtons.add(femaleButton);
         femaleButton.setText("female");
         jPanel3.add(femaleButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
 
         cardMonthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cardMonthCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 50, 20));
-
-        dayCardNbrCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(dayCardNbrCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 50, 20));
-
-        currentYearlbl.setText("DD'");
-        jPanel3.add(currentYearlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 60, -1));
 
         jTabbedPane1.addTab("payment methods", jPanel3);
 
@@ -258,9 +266,7 @@ public class BankingForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cardMonthCombo;
     private javax.swing.JTextField cardNbrTxtField;
     private javax.swing.JComboBox<String> cardYearComboBox;
-    private javax.swing.JLabel currentYearlbl;
     private javax.swing.JLabel cvvlbl;
-    private javax.swing.JComboBox<String> dayCardNbrCombo;
     private javax.swing.JLabel error1lbl;
     private javax.swing.JLabel error2lbl;
     private javax.swing.JLabel error3lbl;
@@ -270,6 +276,7 @@ public class BankingForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton femaleButton;
     private javax.swing.JTextField firstNameTxtField;
     private javax.swing.JLabel firstNamelbl;
+    private javax.swing.ButtonGroup genderButtons;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
