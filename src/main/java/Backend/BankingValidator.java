@@ -92,4 +92,21 @@ public class BankingValidator {
         return check;
     }
 
-}
+    //check gender
+    public boolean checkGenderfromId(String idNum) {
+        boolean female = true;
+        String genderDigits = idNum.substring(6, 9);
+        int gDigits = Integer.parseInt(genderDigits);
+        if (gDigits >= 0000 || gDigits <= 4999) {
+            female = true;
+        } else if (gDigits >= 5000 || gDigits <= 9999) {
+            female = false;
+        }
+        return female;
+
+    }
+
+ 
+    }
+
+

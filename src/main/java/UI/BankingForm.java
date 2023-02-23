@@ -6,8 +6,7 @@
 package UI;
 
 import Backend.BankingValidator;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -24,18 +23,24 @@ public class BankingForm extends javax.swing.JFrame {
     public BankingForm() {
         initComponents();
         v = new BankingValidator();
-        
-        
+
         //make a data model
-         DefaultListModel b = new DefaultListModel();
-        //populate model
-        //set model
-        
-        for(int i=1967;i<2050;i++){
-            
-        
+        DefaultComboBoxModel yearBox = new DefaultComboBoxModel();
+        //populate model   
+        for (int i = 1967; i <= 2050; i++) {
+            cardYearComboBox.setModel(yearBox);
+            String strYear = Integer.toString(i);
+            cardYearComboBox.addItem(strYear);
         }
-        
+
+        DefaultComboBoxModel monthBox = new DefaultComboBoxModel();
+        for (int i = 1; i <= 12; i++) {
+            cardMonthCombo.setModel(monthBox);
+            String strMonth = Integer.toString(i);
+            cardMonthCombo.addItem(strMonth);
+
+        }
+
     }
 
     /**
@@ -67,17 +72,17 @@ public class BankingForm extends javax.swing.JFrame {
         cardYearComboBox = new javax.swing.JComboBox<>();
         maleButton = new javax.swing.JRadioButton();
         addCardButton = new javax.swing.JButton();
-        error1lbl = new javax.swing.JLabel();
-        error8lbl = new javax.swing.JLabel();
-        error3lbl = new javax.swing.JLabel();
-        error4lbl = new javax.swing.JLabel();
-        error6lbl = new javax.swing.JLabel();
+        errorlbl6 = new javax.swing.JLabel();
         IdNumlbl = new javax.swing.JLabel();
         IdNumTxtField = new javax.swing.JTextField();
-        error2lbl = new javax.swing.JLabel();
-        label = new javax.swing.JLabel();
+        errorlbl7 = new javax.swing.JLabel();
         femaleButton = new javax.swing.JRadioButton();
         cardMonthCombo = new javax.swing.JComboBox<>();
+        errorlbl2 = new javax.swing.JLabel();
+        errorlbl3 = new javax.swing.JLabel();
+        errorlbl5 = new javax.swing.JLabel();
+        errorlbl4 = new javax.swing.JLabel();
+        errorlbl1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout JPaneBoxLayout = new javax.swing.GroupLayout(JPaneBox.getContentPane());
         JPaneBox.getContentPane().setLayout(JPaneBoxLayout);
@@ -99,7 +104,7 @@ public class BankingForm extends javax.swing.JFrame {
         PayPalLbl.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         PayPalLbl.setForeground(new java.awt.Color(0, 153, 204));
         PayPalLbl.setText("PAYPAL");
-        jPanel3.add(PayPalLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 104, 26));
+        jPanel3.add(PayPalLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 104, 26));
 
         CardNbrLbl.setText("Card Number (no spaces)");
         jPanel3.add(CardNbrLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, -1));
@@ -119,10 +124,21 @@ public class BankingForm extends javax.swing.JFrame {
                 cardNbrTxtFieldActionPerformed(evt);
             }
         });
+        cardNbrTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cardNbrTxtFieldKeyReleased(evt);
+            }
+        });
         jPanel3.add(cardNbrTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, 30));
 
         lastNamelbl.setText("Last Name");
         jPanel3.add(lastNamelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 64, -1));
+
+        firstNameTxtField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                firstNameTxtFieldKeyReleased(evt);
+            }
+        });
         jPanel3.add(firstNameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 270, 34));
 
         firstNamelbl.setText("First Name ");
@@ -130,7 +146,7 @@ public class BankingForm extends javax.swing.JFrame {
         jPanel3.add(LastNameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 270, 34));
 
         cardYearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(cardYearComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 50, 20));
+        jPanel3.add(cardYearComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 60, 20));
 
         genderButtons.add(maleButton);
         maleButton.setText("male");
@@ -143,11 +159,7 @@ public class BankingForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(addCardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 140, 20));
-        jPanel3.add(error1lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 190, 30));
-        jPanel3.add(error8lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 120, 30));
-        jPanel3.add(error3lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 110, 30));
-        jPanel3.add(error4lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 140, 30));
-        jPanel3.add(error6lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 160, 30));
+        jPanel3.add(errorlbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 160, 30));
 
         IdNumlbl.setText("ID Number");
         jPanel3.add(IdNumlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 64, -1));
@@ -158,8 +170,7 @@ public class BankingForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(IdNumTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 270, 34));
-        jPanel3.add(error2lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 120, 30));
-        jPanel3.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 120, 30));
+        jPanel3.add(errorlbl7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 160, 30));
 
         genderButtons.add(femaleButton);
         femaleButton.setText("female");
@@ -167,6 +178,13 @@ public class BankingForm extends javax.swing.JFrame {
 
         cardMonthCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cardMonthCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 50, 20));
+
+        errorlbl2.setText("\n");
+        jPanel3.add(errorlbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 60, -1));
+        jPanel3.add(errorlbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 190, 30));
+        jPanel3.add(errorlbl5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 160, 30));
+        jPanel3.add(errorlbl4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 160, 30));
+        jPanel3.add(errorlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 160, 30));
 
         jTabbedPane1.addTab("payment methods", jPanel3);
 
@@ -198,15 +216,13 @@ public class BankingForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cardNbrTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardNbrTxtFieldActionPerformed
-        // TODO add your handling code here:
+        //check card number length
 
 
     }//GEN-LAST:event_cardNbrTxtFieldActionPerformed
 
     private void addCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCardButtonActionPerformed
-        // TODO add your handling code here:
-
- 
+        //check card number
 
 
     }//GEN-LAST:event_addCardButtonActionPerformed
@@ -217,6 +233,17 @@ public class BankingForm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_IdNumTxtFieldActionPerformed
+
+    private void firstNameTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstNameTxtFieldKeyReleased
+
+    }//GEN-LAST:event_firstNameTxtFieldKeyReleased
+
+    private void cardNbrTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cardNbrTxtFieldKeyReleased
+        String cardNum = cardNbrTxtField.getText();
+        if (v.checkCardLength(cardNum) == false) {
+            errorlbl1.setText("Card number length needs to be 16 digits");
+        }
+    }//GEN-LAST:event_cardNbrTxtFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -267,12 +294,13 @@ public class BankingForm extends javax.swing.JFrame {
     private javax.swing.JTextField cardNbrTxtField;
     private javax.swing.JComboBox<String> cardYearComboBox;
     private javax.swing.JLabel cvvlbl;
-    private javax.swing.JLabel error1lbl;
-    private javax.swing.JLabel error2lbl;
-    private javax.swing.JLabel error3lbl;
-    private javax.swing.JLabel error4lbl;
-    private javax.swing.JLabel error6lbl;
-    private javax.swing.JLabel error8lbl;
+    private javax.swing.JLabel errorlbl1;
+    private javax.swing.JLabel errorlbl2;
+    private javax.swing.JLabel errorlbl3;
+    private javax.swing.JLabel errorlbl4;
+    private javax.swing.JLabel errorlbl5;
+    private javax.swing.JLabel errorlbl6;
+    private javax.swing.JLabel errorlbl7;
     private javax.swing.JRadioButton femaleButton;
     private javax.swing.JTextField firstNameTxtField;
     private javax.swing.JLabel firstNamelbl;
@@ -281,7 +309,6 @@ public class BankingForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JLabel label;
     private javax.swing.JLabel lastNamelbl;
     private javax.swing.JRadioButton maleButton;
     private javax.swing.JLabel monthlbl;
