@@ -5,6 +5,8 @@
  */
 package Backend;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Kyra Balliram
@@ -33,52 +35,53 @@ public class BankingValidator {
     }
 
     //for visa card first digit needs to be 4
-    public boolean checkFirstDigit(String cardNum) {
-        boolean check = false;
-        char firstDigit = cardNum.charAt(0);
-        if (firstDigit == '4') {
-            check = true;
-        }
-        return check;
-    }
+//    public boolean checkFirstDigit(String cardNum) {
+//        boolean check = true;
+//        char firstDigit = cardNum.charAt(0);
+//        if (firstDigit != '4') {
+//            check = false;
+//        }
+//        return check;
+//    }
 
     //check if visa card has 16 digits:
     public boolean checkCardLength(String cardNum) {
         boolean check = true;
-        if (cardNum.length() != 17) {
+        if (cardNum.length() != 16) {
             check = false;
         }
         return check;
     }
 
-    //checks if visa card contains numbers in range of 2-6 in the seventh to 12th pos
-    public boolean checkRange(String cardNum) {
-        int start = 7;
-        int end = 12;
-        boolean check = true;
-        char[] digitArr = cardNum.toCharArray();
+    //checks if visa card contains numbers in range of 2-6 in the 5th to 10th pos
+//    public boolean checkRange(String cardNum) {
+//        int start = 5;
+//        int end = 10;
+//        boolean check = true;
+//        char[] digitArr = cardNum.toCharArray();
+//
+//        for (int i = digitArr[start]; i < digitArr[end]; i++) {
+//            char currentCh = cardNum.charAt(i);
+//            if (currentCh <= '2' || currentCh > '6') {
+//                check = false;
+//            }
+//        }
+//
+//        return check;
+//    }
 
-        for (int i = digitArr[start]; i < digitArr[end]; i++) {
-            char currentCh = cardNum.charAt(i);
-            if (currentCh < '2' || currentCh > '6') {
-                check = false;
-            }
-        }
-
-        return check;
-    }
-
-    //cvv can either be 3 or 4 digits
+    //cvv can either be 3  digits
     public boolean checkCVV(String cvvNum) {
         boolean check = true;
-        if (cvvNum.length() != 3 || cvvNum.length() != 4) {
+        
+        if (cvvNum.length()!= 3 ) {
             check = false;
         }
         return check;
     }
 
     //check if it is only characters:
-    public boolean checkString(String str) {
+    public boolean checkForLetters(String str) {
         boolean check = true;
         char currentCh = 'a';
 
@@ -104,6 +107,25 @@ public class BankingValidator {
         }
         return female;
 
+    }
+    
+    //check expiratioin date
+    public boolean checkExpirationDate(int year){
+        boolean check = true;
+        LocalDate currentDate = LocalDate.now();
+        int yearDate = currentDate.getYear();
+        if(year<=yearDate){
+            check=false;
+        }
+        return check;
+    }
+    
+    public boolean checkIdLength(String idNum){
+        boolean check = true;
+        if(idNum.length()!=13){
+            check=false;
+        }
+        return check;
     }
 
  
