@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class BankingValidator {
 
-    //general checks
+   
     //checks if data is there
     public boolean PresenceCheck(String str) {
         boolean check = true;
@@ -70,7 +70,7 @@ public class BankingValidator {
 //        return check;
 //    }
 
-    //cvv can either be 3  digits
+    //cvv can must be 3  digits
     public boolean checkCVV(String cvvNum) {
         boolean check = true;
         
@@ -80,7 +80,7 @@ public class BankingValidator {
         return check;
     }
 
-    //check if it is only characters:
+    //check if values are only characters/letters:
     public boolean checkForLetters(String str) {
         boolean check = true;
         char currentCh = 'a';
@@ -95,7 +95,7 @@ public class BankingValidator {
         return check;
     }
 
-    //check gender
+    //check gender according to idNum
     public boolean checkGenderfromId(String idNum) {
         boolean female = true;
         String genderDigits = idNum.substring(6, 9);
@@ -109,7 +109,7 @@ public class BankingValidator {
 
     }
     
-    //check expiratioin date
+    //checks expiration date
     public boolean checkExpirationDate(int year){
         boolean check = true;
         LocalDate currentDate = LocalDate.now();
@@ -120,6 +120,8 @@ public class BankingValidator {
         return check;
     }
     
+    
+    //checks id Length
     public boolean checkIdLength(String idNum){
         boolean check = true;
         if(idNum.length()!=13){

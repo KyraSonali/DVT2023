@@ -173,7 +173,7 @@ public class BankingForm extends javax.swing.JFrame {
                 addCardButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(addCardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 140, 20));
+        jPanel3.add(addCardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 170, 30));
         jPanel3.add(errorlbl6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 190, 30));
 
         IdNumlbl.setText("ID Number");
@@ -312,7 +312,7 @@ public class BankingForm extends javax.swing.JFrame {
         String cardNumStr = cardNbrTxtField.getText();
         if (!v.PresenceCheck(cardNumStr)) {
             cardNumVal = false;
-            errorlbl1.setText("card number id required");
+            errorlbl1.setText("card number is required");
         } else if (!v.checkForDigits(cardNumStr)) {
             cardNumVal = false;
             errorlbl1.setText("card number requires digits only");
@@ -364,7 +364,7 @@ public class BankingForm extends javax.swing.JFrame {
         String idNumStr = IdNumTxtField.getText();
         if (!v.PresenceCheck(idNumStr)) {
             idNumVal = false;
-            errorlbl6.setText("id number requires");
+            errorlbl6.setText("id number required");
         } else if (!v.checkForDigits(idNumStr)) {
             idNumVal = false;
             errorlbl6.setText("id number cannot contain letters");
