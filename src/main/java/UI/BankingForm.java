@@ -20,13 +20,13 @@ public class BankingForm extends javax.swing.JFrame {
      * Creates new form BankingDetails
      */
     private BankingValidator v;
-    private boolean cardNumVal = true;
-    private boolean expirationVal = true;
-    private boolean cvvVal = true;
-    private boolean firstNameVal = true;
-    private boolean lastNameVal = true;
-    private boolean idNumVal = true;
-    private boolean genderVal = true;
+    private boolean CardNumValidation = true;
+    private boolean expirationValidation = true;
+    private boolean cvvValidation = true;
+    private boolean firstNameValidation = true;
+    private boolean lastNameValidation = true;
+    private boolean idNumValidation = true;
+    private boolean genderValidation = true;
 
     public BankingForm() {
         initComponents();
@@ -246,10 +246,10 @@ public class BankingForm extends javax.swing.JFrame {
         int date = Integer.parseInt(yearStr);
 
         if (!v.checkExpirationDate(date)) {
-            expirationVal = false;
+            expirationValidation = false;
             errorlbl2.setText("Invalid expiration date");
         } else {
-            expirationVal = true;
+            expirationValidation = true;
             errorlbl2.setText(" ");
 
         }
@@ -261,25 +261,25 @@ public class BankingForm extends javax.swing.JFrame {
 
         if (v.checkGenderfromId(idNumStr) == true) {
             if (female == true) {
-                genderVal = true;
+                genderValidation = true;
             } else {
                 errorlbl6.setText("Gender does not match ID number");
-                genderVal = false;
+                genderValidation = false;
             }
 
         }
 
         if (v.checkGenderfromId(idNumStr) == false) {
             if (male == true) {
-                genderVal = true;
+                genderValidation = true;
             } else {
                 errorlbl6.setText("Gender does not match ID number");
-                genderVal = false;
+                genderValidation = false;
             }
 
         }
         //check if all  validations are checked
-        if (cardNumVal && firstNameVal && cvvVal && lastNameVal && expirationVal && idNumVal && genderVal) {
+        if (CardNumValidation && firstNameValidation && cvvValidation && lastNameValidation && expirationValidation && idNumValidation && genderValidation) {
             JOptionPane.showMessageDialog(rootPane, "form successfully completed");
 
         } else {
@@ -296,13 +296,13 @@ public class BankingForm extends javax.swing.JFrame {
     private void firstNameTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_firstNameTxtFieldKeyReleased
         String firstNameStr = firstNameTxtField.getText();
         if (!v.PresenceCheck(firstNameStr)) {
-            firstNameVal = false;
+            firstNameValidation = false;
             errorlbl4.setText("name is required");
         } else if (!v.checkForLetters(firstNameStr)) {
-            firstNameVal = false;
+            firstNameValidation = false;
             errorlbl4.setText("name cannot contain numbers");
         } else {
-            firstNameVal = true;
+            firstNameValidation = true;
             errorlbl4.setText(" ");
         }
 
@@ -311,17 +311,17 @@ public class BankingForm extends javax.swing.JFrame {
     private void cardNbrTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cardNbrTxtFieldKeyReleased
         String cardNumStr = cardNbrTxtField.getText();
         if (!v.PresenceCheck(cardNumStr)) {
-            cardNumVal = false;
+            CardNumValidation = false;
             errorlbl1.setText("card number is required");
         } else if (!v.checkForDigits(cardNumStr)) {
-            cardNumVal = false;
+            CardNumValidation = false;
             errorlbl1.setText("card number requires digits only");
 
         } else if (!v.checkCardLength(cardNumStr)) {
-            cardNumVal = false;
+            CardNumValidation = false;
             errorlbl1.setText("card number needs to be 16 digits long");
         } else {
-            cardNumVal = true;
+            CardNumValidation = true;
             errorlbl1.setText(" ");
 
         }
@@ -331,16 +331,16 @@ public class BankingForm extends javax.swing.JFrame {
     private void CvvTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CvvTxtFieldKeyReleased
         String cvvNumStr = CvvTxtField.getText();
         if (!v.PresenceCheck(cvvNumStr)) {
-            cvvVal = false;
+            cvvValidation = false;
             errorlbl3.setText("cvv required");
         } else if (!v.checkForDigits(cvvNumStr)) {
-            cvvVal = false;
+            cvvValidation = false;
             errorlbl3.setText("cvv can only have digits");
         } else if (!v.checkCVV(cvvNumStr)) {
-            cvvVal = false;
+            cvvValidation = false;
             errorlbl3.setText("cvv must be 3 digits long");
         } else {
-            cvvVal = true;
+            cvvValidation = true;
             errorlbl3.setText(" ");
         }
 
@@ -349,13 +349,13 @@ public class BankingForm extends javax.swing.JFrame {
     private void LastNameTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LastNameTxtFieldKeyReleased
         String lastNameStr = LastNameTxtField.getText();
         if (!v.PresenceCheck(lastNameStr)) {
-            lastNameVal = false;
+            lastNameValidation = false;
             errorlbl5.setText("surname is required");
         } else if (!v.checkForLetters(lastNameStr)) {
-            lastNameVal = false;
+            lastNameValidation = false;
             errorlbl5.setText("surname cannot contain numbers");
         } else {
-            lastNameVal = true;
+            lastNameValidation = true;
             errorlbl5.setText(" ");
         }
     }//GEN-LAST:event_LastNameTxtFieldKeyReleased
@@ -363,16 +363,16 @@ public class BankingForm extends javax.swing.JFrame {
     private void IdNumTxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IdNumTxtFieldKeyReleased
         String idNumStr = IdNumTxtField.getText();
         if (!v.PresenceCheck(idNumStr)) {
-            idNumVal = false;
+            idNumValidation = false;
             errorlbl6.setText("id number required");
         } else if (!v.checkForDigits(idNumStr)) {
-            idNumVal = false;
+            idNumValidation = false;
             errorlbl6.setText("id number cannot contain letters");
         } else if (!v.checkIdLength(idNumStr)) {
-            idNumVal = false;
-            errorlbl6.setText("id number but be 13 digits");
+            idNumValidation = false;
+            errorlbl6.setText("id number must be 13 digits");
         } else {
-            idNumVal = true;
+            idNumValidation = true;
             errorlbl6.setText(" ");
         }
 
